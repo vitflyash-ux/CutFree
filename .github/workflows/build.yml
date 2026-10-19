@@ -1,0 +1,42 @@
+# Baut CutFree.exe automatisch auf GitHub (Windows) und hängt sie an ein Release an.
+# Neues Release: einen Tag wie v1.0.0 pushen – oder unter "Actions" manuell starten.
+name: CutFree.exe bauen
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: PyInstaller installieren
+        run: pip install pyinstaller
+
+      - name: CutFree.exe bauen
+        shell: pwsh
+        run: |
+          $add = @('index.html','style.css','app.js','sfx.js','ai.js','gl.js','gl-transitions.json') | ForEach-Object { '--add-data'; "$_;." }
+          pyinstaller --noconfirm --onefile --windowed --name CutFree --icon icon.ico @add server.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CutFree
+          path: dist/CutFree.exe
+
+      - name: Release mit Download erstellen
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/CutFree.exe
+          generate_release_notes: true

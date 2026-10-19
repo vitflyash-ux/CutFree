@@ -1,0 +1,10 @@
+# Gebaute Programme (kommen als Download ins Release, nicht ins Repo)
+CutFree.exe
+build/
+dist/
+*.spec
+__pycache__/
+*.pyc
+
+# Lokale Einstellungen
+.claude/
