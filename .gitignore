@@ -1,4 +1,4 @@
-# Gebaute Programme (kommen als Download ins Release, nicht ins Repo)
+# Built programs (published as release downloads, not stored in the repo)
 CutFree.exe
 build/
 dist/
@@ -6,5 +6,5 @@ dist/
 __pycache__/
 *.pyc
 
-# Lokale Einstellungen
+# Local settings
 .claude/

@@ -1,51 +1,53 @@
-# ✂ CutFree – gratis Video-Editor
+﻿# âœ‚ CutFree â€“ free video editor
 
-**CutFree ist eine kostenlose CapCut-Kopie** – ein Video-Editor für Windows, der aussieht und funktioniert wie CapCut: mit automatischen Untertiteln, KI-Stimmen, Soundeffekten, über 130 Übergängen, Keyframes, Greenscreen und mehr. Läuft komplett auf deinem PC, ohne Konto und ohne Abo.
+**CutFree is a free CapCut copy** â€“ a video editor for Windows that looks and works like CapCut: automatic subtitles, AI voices, sound effects, 130+ transitions, keyframes, green screen and more. It runs entirely on your PC â€“ no account, no subscription.
 
-Gemacht von **[@vitifly auf TikTok](https://www.tiktok.com/@vitifly)** – folg mir für Updates! 🎬
+Made by **[@vitifly on TikTok](https://www.tiktok.com/@vitifly)** â€“ follow me for updates! ðŸŽ¬
 
-> CutFree ist ein eigenständiges Hobby-Projekt und hat nichts mit CapCut oder ByteDance zu tun. „CapCut“ ist eine Marke von ByteDance.
+> CutFree is an independent hobby project and is not affiliated with CapCut or ByteDance. "CapCut" is a trademark of ByteDance.
 
-## ⬇ Download
+## â¬‡ Download
 
-1. Rechts auf **Releases** klicken (oder [hier](../../releases/latest)).
-2. **CutFree.exe** herunterladen und doppelklicken.
-3. Falls Windows „Der Computer wurde durch Windows geschützt“ zeigt: **Weitere Informationen → Trotzdem ausführen** (die Datei ist nicht kostenpflichtig signiert).
+1. Click **Releases** on the right (or [here](../../releases/latest)).
+2. Download **CutFree.exe** and double-click it.
+3. If Windows shows "Windows protected your PC": click **More info â†’ Run anyway** (the file is not code-signed, which costs money).
 
-Voraussetzung: Windows 10/11 mit Microsoft Edge (ist vorinstalliert).
+Requirements: Windows 10/11 with Microsoft Edge (pre-installed).
 
-## Funktionen
+> Note: the editor's interface is currently in German.
 
-- **Timeline wie CapCut:** Teilen, Zuschneiden, Ziehen, Magnet, Marker, Spuren sperren, Rückgängig
-- **Automatische Untertitel** (KI „Whisper“, läuft lokal) mit eigenen Styles und Karaoke-Wort-Hervorhebung
-- **KI-Stimmen** aus Text (Kind, Monster, Roboter, Oma …) – vorher anhören
-- **Soundeffekte** (Myinstants-Bibliothek mit Suche), Natur-Sounds, Beats, eigene Audios, Ton aus Videos
-- **Über 130 Übergänge** (inkl. 123 Profi-Übergänge), Effekte, Filter, Animationen – alle mit Live-Vorschau
-- **Keyframes** (Bewegung, Zoom, Drehung), **Greenscreen**, Masken, Zuschneiden, Füllmethoden
-- **Lumetri-Farbkorrektur** mit fertigen Looks
-- **Lautstärke- und Tonhöhen-Kurven** (Plattenspieler-Effekt: tiefer = langsamer)
-- **Automatisches Speichern** – dein Projekt ist beim nächsten Start wieder da
-- **Export als MP4**
+## Features
 
-## Wo werden Projekte gespeichert?
+- **CapCut-style timeline:** split, trim, drag, snapping, markers, track lock, undo/redo
+- **Automatic subtitles** (AI "Whisper", runs locally) with your own styles and karaoke word highlighting
+- **AI text-to-speech voices** (kid, monster, robot, grandma â€¦) â€“ preview before inserting
+- **Sound effects** (Myinstants library with search), nature sounds, beats, your own audio, audio from videos
+- **130+ transitions** (including 123 pro transitions), effects, filters, animations â€“ all with live previews
+- **Keyframes** (position, zoom, rotation), **green screen**, masks, crop, blend modes
+- **Lumetri-style color grading** with ready-made looks
+- **Volume and pitch curves** (turntable effect: lower pitch = slower video)
+- **Auto-save** â€“ your project is back the next time you open the app
+- **MP4 export**
 
-Automatisch auf **deinem PC** (im Programm-Speicher von CutFree unter `%LOCALAPPDATA%\CutFree`). Jeder PC hat sein eigenes Projekt. Es wird nichts in eine Cloud hochgeladen.
+## Where are projects saved?
 
-## Datenschutz
+Automatically on **your PC** (in CutFree's app storage under `%LOCALAPPDATA%\CutFree`). Every PC keeps its own project. Nothing is uploaded to a cloud.
 
-- Videos, Untertitel und Stimmen werden **lokal** verarbeitet.
-- Internet wird nur gebraucht für: einmaligen Download der KI-Modelle (Hugging Face), Schriftarten (Google Fonts) und das Suchen/Laden von Soundeffekten (myinstants.com).
-- Es gibt **keine API-Schlüssel oder Passwörter** im Programm.
+## Privacy
 
-## Selbst starten / bauen (für Entwickler)
+- Videos, subtitles and voices are processed **locally**.
+- Internet is only needed for: the one-time download of the AI models (Hugging Face), fonts (Google Fonts) and searching/loading sound effects (myinstants.com).
+- There are **no API keys or passwords** in the app.
+
+## Run or build it yourself (for developers)
 
 ```
-python server.py          # startet den Editor im Browser
-EXE_NEU_BAUEN.bat         # baut CutFree.exe (braucht Python + PyInstaller)
+python server.py          # starts the editor in your browser
+BUILD_EXE.bat             # builds CutFree.exe (needs Python + PyInstaller)
 ```
 
-Ein neues Release mit .exe entsteht automatisch, wenn ein Tag wie `v1.0.0` gepusht wird (siehe `.github/workflows/build.yml`).
+A new release with the .exe is built automatically when a tag like `v1.0.0` is pushed (see `.github/workflows/build.yml`).
 
-## Drittanbieter
+## Third-party software
 
-Siehe [THIRD_PARTY.md](THIRD_PARTY.md).
+See [THIRD_PARTY.md](THIRD_PARTY.md).
