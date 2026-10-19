@@ -26,7 +26,7 @@ jobs:
       - name: Build CutFree.exe
         shell: pwsh
         run: |
-          $add = @('index.html','style.css','app.js','sfx.js','ai.js','gl.js','gl-transitions.json') | ForEach-Object { '--add-data'; "$_;." }
+          $add = @('index.html','style.css','app.js','sfx.js','ai.js','gl.js','i18n.js','gl-transitions.json') | ForEach-Object { '--add-data'; "$_;." }
           pyinstaller --noconfirm --onefile --windowed --name CutFree --icon icon.ico @add server.py
 
       - uses: actions/upload-artifact@v4

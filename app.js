@@ -329,7 +329,7 @@
     return c;
   }
   function addTextClip(style, at, trackId, text) {
-    return mutate(() => { const c = addClip({ type: 'text', text: text || 'Text eingeben', style: { ...style }, start: at ?? time, dur: 3, name: 'Text' }, trackId); selId = c.id; propTab.text = 'text'; return c; });
+    return mutate(() => { const c = addClip({ type: 'text', text: text || (window.I18N ? I18N.t('Text eingeben') : 'Text eingeben'), style: { ...style }, start: at ?? time, dur: 3, name: 'Text' }, trackId); selId = c.id; propTab.text = 'text'; return c; });
   }
 
   /* ======================= ABSPIELEN ======================= */
@@ -1212,7 +1212,7 @@
       Object.keys(STICKERS).map((k, i) => `<h4>${k}</h4><div class="grid emoji-grid" data-i="${i}"></div>`).join('');
     TEXT_STICKERS.forEach(([txt, sn]) => {
       const st = STYLE_PRESETS.find(s => s.name === sn); const t = document.createElement('div'); t.className = 'tile textpreset'; t.style.cssText = styleTileCss(st); t.textContent = txt;
-      t.onclick = () => addSticker(txt, { ...stripStyle(st), size: Math.max(st.size, 90) }, -.2); $('#txGrid').appendChild(t);
+      t.onclick = () => addSticker(window.I18N ? I18N.t(txt) : txt, { ...stripStyle(st), size: Math.max(st.size, 90) }, -.2); $('#txGrid').appendChild(t);
     });
     Object.values(STICKERS).forEach((list, i) => {
       const gr = libBody.querySelector(`.emoji-grid[data-i="${i}"]`);
@@ -1287,7 +1287,7 @@
   $('#libTabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { libTab = b.dataset.tab; renderLib(); } });
 
   /* ---------- Untertitel (KI) ---------- */
-  const capUI = { model: 'onnx-community/whisper-base_timestamped', lang: 'german', words: 3, y: .28, replace: true, busy: false };
+  const capUI = { model: 'onnx-community/whisper-base_timestamped', lang: window.I18N && I18N.lang === 'en' ? 'english' : 'german', words: 3, y: .28, replace: true, busy: false };
   function renderCaptionsTab() {
     const styleName = getCapStyleName();
     libBody.innerHTML = `
@@ -1381,7 +1381,7 @@
     ['roboter', 'Roboter', '🤖', { rate: 1, ring: [70, .75], comb: [.006, .55] }], ['alien', 'Alien', '👽', { rate: 1.12, ring: [420, .5], vib: [8, 60] }],
     ['telefon', 'Telefon', '📞', { rate: 1, phone: true, drive: 2 }], ['echo', 'Echo-Halle', '🏛', { rate: 1, echo: [.28, .45] }], ['heli', 'Heliumballon', '🎈', { rate: 1.5, vib: [6, 25] }], ['daemon', 'Dämon', '😈', { rate: .75, ring: [30, .35], echo: [.09, .35], bass: 6 }],
   ];
-  const voiceUI = { text: '', lang: 'deu', voice: 'kind', caption: true, busy: false };
+  const voiceUI = { text: '', lang: window.I18N && I18N.lang === 'en' ? 'eng' : 'deu', voice: 'kind', caption: true, busy: false };
   async function processVoice(data, sr, P) {
     const rate = P.rate || 1, tail = P.echo ? 1.5 : .15, outSR = SFX.SR;
     const oc = new OfflineAudioContext(1, Math.ceil((data.length / sr / rate + tail) * outSR), outSR);
@@ -1824,6 +1824,7 @@
   $('#fileInput').onchange = e => { importFiles(e.target.files); e.target.value = ''; };
   $('#aspectSel').onchange = e => { const [w, h] = e.target.value.split('x').map(Number); state.w = w; state.h = h; canvas.width = w; canvas.height = h; fitCanvas(); };
   $('#bgSel').onchange = e => state.bg = e.target.value;
+  if (window.I18N) { $('#langSel').value = I18N.lang; $('#langSel').onchange = e => I18N.set(e.target.value); }
   document.addEventListener('keydown', e => {
     if (e.target.matches('input,textarea,select') && !(e.target.type === 'range' || e.target.type === 'checkbox')) return;
     const k = e.key.toLowerCase(), mod = e.ctrlKey || e.metaKey;
@@ -1906,5 +1907,5 @@
 
   renderLib(); renderAll(); fitCanvas(); requestAnimationFrame(rafLoop);
   restoreProject().finally(() => { restoring = false; });
-  window.CutFree = { _pitch: pitchCache, _els: els, srcAt, state, media, importFiles, addMediaClip, mediaFromSfx, addTextClip, setTime, play, pause, select, get time() { return time; } };
+  window.CutFree = { saveNow: () => saveProject(), _pitch: pitchCache, _els: els, srcAt, state, media, importFiles, addMediaClip, mediaFromSfx, addTextClip, setTime, play, pause, select, get time() { return time; } };
 })();

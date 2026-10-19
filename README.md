@@ -14,7 +14,7 @@ Made by **[@vitifly on TikTok](https://www.tiktok.com/@vitifly)** – follow me 
 
 Requirements: Windows 10/11 with Microsoft Edge (pre-installed).
 
-> Note: the editor's interface is currently in German.
+🌍 **Language:** English and German – switch at the top right of the editor (🇬🇧 English / 🇩🇪 Deutsch).
 
 ## Features
 
